@@ -1,6 +1,5 @@
 <h1>CLOUD<h1>
-<h4>There are many Web server available<h4>
-<ul>AMAZON WEB SERVER</ul>
+There are many Web server available
+#AMAZON WEB SERVER
 <p>Amazon web server is also known as <span>AWS</span></p>
 
-![screenshot](image.png)
