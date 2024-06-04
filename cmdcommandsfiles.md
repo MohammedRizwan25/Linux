@@ -6,4 +6,5 @@ There are many Web server available
 #AZURE 
 Microsoft Azure, often referred to as just Azure, is a cloud computing platform developed by Microsoft. It offers management, access and development of applications and services through its global infrastructure.
 #GOOGLE CLOUD
- IAM is also kmown as identy acess management
+Google Cloud Platform, offered by Google, is a suite of cloud computing services that provides a series of modular cloud services including computing, data storage, data analytics, and machine learning, alongside a set of management tools.
+ IAM is also kmown as identy access management
