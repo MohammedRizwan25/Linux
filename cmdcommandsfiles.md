@@ -17,7 +17,95 @@ Google Cloud Platform, offered by Google, is a suite of cloud computing services
 IDENTITY ACCESS MANAGEMENT
  IAM is also kmown as identy access management
  Identity and Access Management (IAM) lets administrators authorize who can take action on specific resources, giving you full control and visibility to manage Google Cloud resources centrally.
- 
+ Got it, you're working in a cloud environment. If you're encountering issues with accessing a Git repository from a cloud instance (e.g., AWS EC2, Azure VM, Google Cloud VM), there are a few additional considerations specific to cloud environments that you can check:
+
+### 1. Security Group Rules (AWS EC2 Specific)
+Ensure that the security group associated with your instance allows outbound HTTPS traffic (port 443).
+
+- Go to the EC2 dashboard in the AWS Management Console.
+- Select your instance.
+- Check the associated security group.
+- Ensure there is a rule that allows outbound traffic on port 443.
+
+### 2. Network Security Group (Azure VM Specific)
+For Azure VMs, ensure the network security group (NSG) associated with your VM allows outbound traffic on port 443.
+
+- Go to the Azure portal.
+- Navigate to your VM.
+- Check the NSG associated with the VM.
+- Ensure there is a rule that allows outbound traffic on port 443.
+
+### 3. Firewall Rules (Google Cloud VM Specific)
+For Google Cloud VMs, ensure that firewall rules allow outbound HTTPS traffic.
+
+- Go to the Google Cloud Console.
+- Navigate to VPC Network > Firewall rules.
+- Ensure there is a rule that allows egress traffic on port 443.
+
+### 4. Instance Metadata and IAM Roles
+Ensure that your cloud instance has the necessary IAM roles and permissions to access the internet if you're using AWS, Azure, or Google Cloud.
+
+- **AWS**: Check that your instance's IAM role has the necessary permissions and that the instance has access to the internet via an Internet Gateway or a NAT Gateway.
+- **Azure**: Ensure that your VM has a public IP address or is behind a NAT gateway.
+- **Google Cloud**: Ensure your VM has a public IP address or is using Cloud NAT.
+
+### 5. DNS Resolution
+Ensure that your instance can resolve DNS names.
+
+- Check the DNS resolver configuration:
+  ```bash
+  cat /etc/resolv.conf
+  ```
+- Ensure that it points to valid DNS servers.
+
+### 6. Update Git Configuration
+Make sure your Git configuration is set correctly. Sometimes cloud environments may have specific networking requirements.
+
+- **Set a higher Git timeout**:
+  ```bash
+  git config --global http.lowSpeedLimit 1000
+  git config --global http.lowSpeedTime 60
+  ```
+
+- **Set up a proxy if needed**:
+  If your cloud environment requires a proxy to access the internet, configure Git to use the proxy.
+
+  ```bash
+  git config --global http.proxy http://proxyuser:proxypassword@proxyaddress:proxyport
+  git config --global https.proxy https://proxyuser:proxypassword@proxyaddress:proxyport
+  ```
+
+### 7. Check for Instance-Specific Issues
+Sometimes the issue might be specific to the instance you are working on. Try the following steps:
+
+- **Reboot the Instance**: Sometimes, simply rebooting the instance can resolve network-related issues.
+  ```bash
+  sudo reboot
+  ```
+
+- **Create a New Instance**: If possible, create a new instance and see if the problem persists.
+
+### 8. Use SSH Key for Cloning
+If HTTPS cloning continues to fail, consider using SSH for cloning, which can sometimes bypass certain network issues.
+
+1. **Generate an SSH key**:
+   ```bash
+   ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+   ```
+
+2. **Add the SSH key to your GitHub account**:
+   - Copy the SSH key:
+     ```bash
+     cat ~/.ssh/id_rsa.pub
+     ```
+   - Add it to your GitHub account settings under "SSH and GPG keys".
+
+3. **Clone the repository using SSH**:
+   ```bash
+   git clone git@github.com:MohammedRizwan25/Linux.git
+   ```
+
+By following these steps, you should be able to troubleshoot and resolve the issue of accessing the Git repository from your cloud instance.
  
  AMAZON EC2
 Amazon Elastic Compute Cloud (EC2) is a web service provided by Amazon Web Services (AWS) that offers scalable computing capacity in the cloud. With EC2, you can run virtual servers on demand, enabling you to scale your applications up or down as needed. Here are some key features and steps to get started with EC2:
