@@ -9,3 +9,4 @@ Microsoft Azure, often referred to as just Azure, is a cloud computing platform 
 Google Cloud Platform, offered by Google, is a suite of cloud computing services that provides a series of modular cloud services including computing, data storage, data analytics, and machine learning, alongside a set of management tools.
 IDENTITY ACCESS MANAGEMENT
  IAM is also kmown as identy access management
+ Identity and Access Management (IAM) lets administrators authorize who can take action on specific resources, giving you full control and visibility to manage Google Cloud resources centrally.
